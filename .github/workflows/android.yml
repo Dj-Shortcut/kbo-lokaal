@@ -42,4 +42,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           generate_release_notes: false
-          files: src-tauri/gen/android/app/build/outputs/apk/debug/*.apk
+          files: |
+            src-tauri/gen/android/app/build/outputs/apk/universal/debug/*.apk
+            src-tauri/gen/android/app/build/outputs/bundle/universalDebug/*.aab
