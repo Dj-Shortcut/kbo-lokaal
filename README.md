@@ -47,6 +47,8 @@ De workflow in `.github/workflows/build.yml` bouwt automatisch pakketten voor ma
 
 De gebouwde installers verschijnen als Actions-artifacts. De workflow publiceert geen KBO-zip of SQLite-database.
 
+Bij een tag zoals `v0.1.0` maakt de workflow bovendien automatisch een GitHub Release met de installers. Een website kan daarna linken naar de downloadpagina van de nieuwste release.
+
 ## Databron en verantwoord gebruik
 
 De applicatie is alleen een hulpmiddel om lokaal met KBO Open Data te werken. Gebruikers moeten zelf de officiële KBO-gebruiksvoorwaarden, bronvermelding, privacyregels en beperkingen rond direct marketing naleven.
