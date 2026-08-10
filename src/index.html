@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="nl">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="/styles.css" /><title>KBO Lokaal</title></head>
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" /><meta name="theme-color" content="#1769e0" /><link rel="stylesheet" href="/styles.css" /><title>KBO Lokaal</title></head>
   <body>
     <main class="container">
       <h1>KBO Lokaal</h1>
@@ -21,7 +21,7 @@
           <label>Gestart tot<input id="start_tot" type="date" /></label>
           <label>Status<select id="status"><option value="AC">Actief</option><option value="ALLE">Alle statussen</option></select></label>
         </div>
-        <button id="search">Zoek bedrijflijst</button><button id="export" type="button" class="secondary">Exporteer volledige CSV</button>
+        <div class="action-row"><button id="search">Zoek bedrijflijst</button><button id="export" type="button" class="secondary">Exporteer volledige CSV</button></div>
         <p class="hint">Vul minstens gemeente, postcode of activiteit in. De eerste 100 regels worden getoond; het totale aantal staat erboven.</p>
       </section>
       <p id="message" class="message"></p>
