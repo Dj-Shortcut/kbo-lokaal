@@ -1,31 +1,52 @@
 # KBO Lokaal
 
-Een lokale Tauri-app om de KBO-database te doorzoeken. De gegevens blijven op het toestel van de gebruiker.
+Een eenvoudige, lokale desktopapp om Belgische ondernemingen uit de officiële KBO Open Data te filteren op gemeente, postcode, activiteit/NACE-code en andere kenmerken. De gegevens worden lokaal verwerkt; de KBO-database wordt niet meegeleverd of opnieuw gepubliceerd.
 
-## Gebruiken
+## Voor gebruikers
 
-1. Start de app.
-2. Klik op **Importeer KBO-zip…** en selecteer de officiële KBO-zip. De app bouwt de database lokaal op.
-3. Vul bijvoorbeeld `Ninove` in bij **Gemeente**.
-4. Klik op **Zoek bedrijflijst** of **Exporteer volledige CSV**.
+1. Installeer de versie voor jouw besturingssysteem.
+2. Download de officiële KBO Open Data-zip via de FOD Economie.
+3. Open KBO Lokaal en klik op **Importeer KBO-zip…**.
+4. Kies filters zoals gemeente of activiteit.
+5. Bekijk de lijst of exporteer de volledige selectie naar CSV.
 
-De app toont het totale aantal resultaten en de eerste 100 regels.
+De eerste import van de volledige KBO-zip kan meerdere minuten duren en heeft vrije schijfruimte nodig.
+
+## Functies
+
+- lijsten maken per gemeente, postcode, straat en activiteit;
+- zoeken op bedrijfsnaam, ondernemingsnummer, e-mail, telefoon of website;
+- filteren op NACE-code, rechtsvorm, startdatum en status;
+- leesbare Nederlandse NACE-omschrijvingen;
+- totaal aantal resultaten tonen;
+- volledige gefilterde lijsten exporteren als CSV;
+- lokale SQLite-database, zonder upload naar een server.
 
 ## Ontwikkelen
 
+Vereist: Node.js, Rust en de Tauri-prerequisites voor je besturingssysteem.
+
 ```bash
-npm install
+npm ci
 npm run tauri dev
 ```
 
-## Bouwen voor macOS
+Voor een macOS-build:
 
 ```bash
 npm run tauri build -- --bundles app
 ```
 
-De KBO-database wordt bewust niet meegeleverd in de app. Gebruikers downloaden en importeren de officiële KBO Open Data zelf. De import kan bij de volledige zip meerdere minuten duren.
+## GitHub Actions
 
-## Andere platformen
+De workflow in `.github/workflows/build.yml` bouwt automatisch pakketten voor macOS, Windows en Linux:
 
-De Tauri-code ondersteunt macOS, Windows en Linux. De workflow in `.github/workflows/build.yml` maakt per platform een apart installatiepakket. Bij een release moet de database als afzonderlijk bestand naast de app worden meegeleverd; de app zoekt die automatisch in dezelfde map.
+- bij een push naar `main`;
+- handmatig via **Actions → Build KBO Lokaal → Run workflow**;
+- bij een tag die begint met `v`, bijvoorbeeld `v0.1.0`.
+
+De gebouwde installers verschijnen als Actions-artifacts. De workflow publiceert geen KBO-zip of SQLite-database.
+
+## Databron en verantwoord gebruik
+
+De applicatie is alleen een hulpmiddel om lokaal met KBO Open Data te werken. Gebruikers moeten zelf de officiële KBO-gebruiksvoorwaarden, bronvermelding, privacyregels en beperkingen rond direct marketing naleven.
