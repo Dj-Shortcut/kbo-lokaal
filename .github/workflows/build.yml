@@ -1,0 +1,36 @@
+name: Build KBO Lokaal
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            label: macOS
+          - os: windows-latest
+            label: Windows
+          - os: ubuntu-22.04
+            label: Linux
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linux dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libxdo-dev
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm install
+      - run: npm run tauri build -- --bundles ${{ runner.os == 'Windows' && 'nsis' || runner.os == 'Linux' && 'appimage' || 'app' }}
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: KBO-Lokaal-${{ matrix.label }}
+          path: src-tauri/target/release/bundle/**

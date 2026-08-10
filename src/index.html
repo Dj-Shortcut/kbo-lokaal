@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="nl">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="/styles.css" /><title>KBO Lokaal</title></head>
+  <body>
+    <main class="container">
+      <h1>KBO Lokaal</h1>
+      <p class="subtitle">Maak lokale bedrijflijsten zonder gegevens naar een server te sturen.</p>
+      <section class="panel">
+        <div class="path-row"><button id="import-zip" type="button" class="secondary">Importeer KBO-zip…</button><button id="choose-db" type="button" class="secondary">Kies andere database…</button><input id="db-path" placeholder="Database naast de app wordt automatisch gebruikt" readonly /></div>
+        <div class="grid">
+          <label>Bedrijfsnaam<input id="naam" placeholder="bv. VALCEANA" /></label>
+          <label>Gemeente<input id="gemeente" placeholder="bv. Ninove" /></label>
+          <label>Postcode<input id="postcode" placeholder="bv. 9400" /></label>
+          <label>Straat<input id="straat" placeholder="bv. Kerkstraat" /></label>
+          <label>E-mail<input id="email" placeholder="bv. gmail.com" /></label>
+          <label>Telefoon / website<input id="contact" placeholder="bv. 0475 of .be" /></label>
+          <label>Activiteit / NACE<input id="activiteit" placeholder="bv. bouw of 41001" /></label>
+          <label>KBO-nummer<input id="kbo" placeholder="bv. 1001.240.730" /></label>
+          <label>Rechtsvorm / type<input id="juridisch" placeholder="bv. BV of 1" /></label>
+          <label>Gestart vanaf<input id="start_van" type="date" /></label>
+          <label>Gestart tot<input id="start_tot" type="date" /></label>
+          <label>Status<select id="status"><option value="AC">Actief</option><option value="ALLE">Alle statussen</option></select></label>
+        </div>
+        <button id="search">Zoek bedrijflijst</button><button id="export" type="button" class="secondary">Exporteer volledige CSV</button>
+        <p class="hint">Vul minstens gemeente, postcode of activiteit in. De eerste 100 regels worden getoond; het totale aantal staat erboven.</p>
+      </section>
+      <p id="message" class="message"></p>
+      <section id="results"></section>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
